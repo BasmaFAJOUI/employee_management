@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Employee Management</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+    <script src="controllers/employeeController.js"></script>
+    <script src="services/employeeService.js"></script>
+  </head>
+  <body ng-app="employeeApp" ng-controller="EmployeeController">
+    <h1>Employee Management System</h1>
+    <button ng-click="getEmployees()">Load Employees</button>
+    <ul>
+      <li ng-repeat="employee in employees">
+        {{ employee.first_name }} {{ employee.last_name }}
+        <button ng-click="deleteEmployee(employee.id)">Delete</button>
+      </li>
+    </ul>
+  </body>
+</html>
