@@ -1,18 +1,15 @@
 import { Component } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
-import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  standalone: true,
-  imports: [NgbCarouselModule, RouterModule], // Ajoutez RouterModule ici
 })
 export class HomeComponent {
   constructor(private router: Router) {}
-  goToEmployeeList() {
+
+  goToEmployeeList(): void {
     this.router.navigate(['/show-all-employees']);
   }
-  // images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/2000/600`);
 }

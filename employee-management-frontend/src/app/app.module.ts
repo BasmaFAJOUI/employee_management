@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // <-- Import FormsModule here
@@ -16,6 +15,7 @@ import { UpdateEmployeeComponent } from './update-employee/update-employee.compo
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
     EmployeeComponent,
     AddEmployeeComponent,
     UpdateEmployeeComponent,
@@ -23,13 +23,12 @@ import { UpdateEmployeeComponent } from './update-employee/update-employee.compo
   ],
   imports: [
     BrowserModule,
-    FormsModule, // Assurez-vous qu'il est bien là
-    ReactiveFormsModule, // Si vous utilisez des formulaires réactifs
-    AppRoutingModule,
-    CommonModule, // Obligatoire pour ngIf, ngFor, etc.
-    NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
-    HomeComponent,
+    AppRoutingModule,
+    NgbModule, // Assurez-vous que NgbModule est importé ici
+    AppRoutingModule, // Utilisez AppRoutingModule pour vos routes
     BrowserAnimationsModule,
   ],
   providers: [],

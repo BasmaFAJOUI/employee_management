@@ -13,16 +13,15 @@ export interface Employee {
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root', // Fournisseur de service global
 })
 export class EmployeeService {
-  private baseUrl = 'http://localhost:8080/api/employees'; // URL du backend
+  private baseUrl = 'http://localhost:8080/api/employees'; // Remplacez par votre URL
 
   constructor(private http: HttpClient) {}
 
-  // Récupérer tous les employés
-  getEmployees(): Observable<Employee[]> {
-    return this.http.get<Employee[]>(this.baseUrl);
+  getEmployees(): Observable<any> {
+    return this.http.get(this.baseUrl);
   }
 
   // Récupérer un employé par ID

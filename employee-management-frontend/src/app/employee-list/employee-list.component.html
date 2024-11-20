@@ -1,22 +1,21 @@
 <div class="container">
   <!-- Formulaire de recherche -->
   <div>
-    <form (ngSubmit)="goToEmployee()">
+    <form (submit)="goToEmployee(EnteredID)">
       <div class="form-group col-md-6 inline">
-        <!-- Liaison unidirectionnelle avec la variable EnteredID et mise à jour manuelle avec (input) -->
+        <!-- Liaison directe avec une variable -->
         <input
           type="text"
-          [value]="EnteredID"
-          (input)="EnteredID = $event.target.value"
+          #searchID
           class="form-control"
           id="id"
-          name="id"
           placeholder="Search by ID"
         />
         <button
           class="btn btn-secondary"
           type="submit"
           style="margin-top: 10px"
+          (click)="EnteredID = searchID.value"
         >
           Search
         </button>

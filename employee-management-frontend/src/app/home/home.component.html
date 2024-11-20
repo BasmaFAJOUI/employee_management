@@ -1,84 +1,167 @@
-<body>
-  <ngb-carousel>
-    <ng-template ngbSlide>
-      <div class="picsum-img-wrapper">
-        <img
-          style="width: 100vw; height: 610px"
-          src="../assets/2.jpg"
-          alt="Random first slide"
-        />
-      </div>
-      <div class="carousel-caption">
-        <h1 id="p1">Inspiring leadership innovation.</h1>
-        <p>Employee Management System</p>
-      </div>
-    </ng-template>
-    <ng-template ngbSlide>
-      <div class="picsum-img-wrapper">
-        <img
-          style="width: 100vw; height: 610px"
-          src="../assets/1.jpg"
-          alt="Random second slide"
-        />
-      </div>
-      <div class="carousel-caption">
-        <h3 id="p1">Second slide label</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      </div>
-    </ng-template>
-  </ngb-carousel>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carousel Example</title>
+    <style>
+      /* Carousel styles */
+      .carousel {
+        position: relative;
+        max-width: 100%;
+        height: 610px;
+        overflow: hidden;
+      }
 
-  <!-- Skills -->
-  <section
-    id="skills"
-    class="section-2 odd highlights image-right counter skills featured"
-  >
-    <br /><br />
-    <div class="divMain container">
-      <div class="container c1 text">
-        <h1 class="text">Techknowlogy Stack Used:</h1>
-        <br />
-        <ul class="category" id="t1">
-          <li>
-            Backend Techknowlogy
-            <ul class="subcategory">
-              <li>GO</li>
-            </ul>
-          </li>
-          <li>
-            Frontend Techknowlogy
-            <ul class="subcategory">
-              <li>Angular</li>
-            </ul>
-          </li>
-          <li>
-            Database Techknowlogy
-            <ul class="subcategory">
-              <li>MongoDB</li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-      <div class="image">
-        <img src="../assets/about-5.webp" class="fit-image" alt="Fit Image" />
-      </div>
-    </div>
-    <br /><br />
-  </section>
+      .slides {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+      }
 
-  <section class="about">
-    <br /><br />
-    <div class="container">
-      <div class="about-section">
-        <h1>About Us Page</h1>
-        <br />
-        <p>
-          Effectively and systematically manage and document the pertinent
-          details and information of your employees to ensure a thorough and
-          accurate record-keeping system within your organizational framework.
-        </p>
+      .slide {
+        min-width: 100%;
+        position: relative;
+      }
+
+      .slide img {
+        width: 100%;
+        height: 610px;
+      }
+
+      .caption {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        padding: 10px;
+        border-radius: 5px;
+      }
+
+      .prev,
+      .next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 20px;
+        border-radius: 50%;
+      }
+
+      .prev {
+        left: 10px;
+      }
+
+      .next {
+        right: 10px;
+      }
+
+      /* Skills section styles */
+      .skills-section {
+        padding: 20px;
+        background: #f4f4f4;
+      }
+
+      .skills-section h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .skills-section ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 auto;
+        max-width: 600px;
+      }
+
+      .skills-section li {
+        margin: 10px 0;
+      }
+
+      /* About section styles */
+      .about {
+        padding: 20px;
+        text-align: center;
+      }
+
+      .about h1 {
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Carousel -->
+    <div class="carousel">
+      <div class="slides">
+        <div class="slide">
+          <img src="../assets/1.jpg" alt="First Slide" />
+          <div class="caption"></div>
+        </div>
+        <div class="slide">
+          <img src="../assets/2.jpg" alt="Second Slide" />
+          <div class="caption"></div>
+        </div>
       </div>
+      <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+      <button class="next" onclick="moveSlide(1)">&#10095;</button>
     </div>
-    <br /><br /><br /><br /><br />
-  </section>
-</body>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section">
+      <h1>Technology Stack Used:</h1>
+      <ul>
+        <li>
+          Backend Technology
+          <ul>
+            <li>GO</li>
+          </ul>
+        </li>
+        <li>
+          Frontend Technology
+          <ul>
+            <li>Angular</li>
+          </ul>
+        </li>
+        <li>
+          Database Technology
+          <ul>
+            <li>MongoDB</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+      <h1>About Us Page</h1>
+      <p>
+        Effectively and systematically manage and document the pertinent details
+        and information of your employees to ensure a thorough and accurate
+        record-keeping system within your organizational framework.
+      </p>
+    </section>
+
+    <script>
+      let currentSlide = 0;
+
+      function moveSlide(direction) {
+        const slides = document.querySelector(".slides");
+        const totalSlides = document.querySelectorAll(".slide").length;
+
+        currentSlide += direction;
+
+        if (currentSlide < 0) {
+          currentSlide = totalSlides - 1;
+        } else if (currentSlide >= totalSlides) {
+          currentSlide = 0;
+        }
+
+        slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+      }
+    </script>
+  </body>
+</html>
