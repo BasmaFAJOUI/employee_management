@@ -1,16 +1,22 @@
-import { HttpClientModule } from '@angular/common/http';
+import { CommonModule, NgFor } from '@angular/common';
+import {
+  HttpClientModule,
+  provideHttpClient,
+  withFetch,
+} from '@angular/common/http'; // Importez aussi provideHttpClient ici
+import { NO_ERRORS_SCHEMA } from '@angular/compiler';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // <-- Import FormsModule here
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AddEmployeeComponent } from './add-employee/add-employee.component';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { EmployeeComponent } from './employee-list/employee-list.component';
-import { HomeComponent } from './home/home.component';
-import { ShowDetailsComponent } from './show-details/show-details.component';
-import { UpdateEmployeeComponent } from './update-employee/update-employee.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Correct
+import { BrowserModule } from '@angular/platform-browser'; // Correct
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Correct
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; // Correct
+import { AddEmployeeComponent } from './add-employee/add-employee.component'; // Correct
+import { AppRoutingModule } from './app-routing.module'; // Correct
+import { AppComponent } from './app.component'; // Correct
+import { EmployeeComponent } from './employee-list/employee-list.component'; // Correct
+import { HomeComponent } from './home/home.component'; // Correct
+import { ShowDetailsComponent } from './show-details/show-details.component'; // Correct
+import { UpdateEmployeeComponent } from './update-employee/update-employee.component'; // Correct
 
 @NgModule({
   declarations: [
@@ -25,13 +31,21 @@ import { UpdateEmployeeComponent } from './update-employee/update-employee.compo
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
+    HttpClientModule, // Assurez-vous que HttpClientModule est bien ici
+    NgbModule,
     AppRoutingModule,
-    NgbModule, // Assurez-vous que NgbModule est importé ici
-    AppRoutingModule, // Utilisez AppRoutingModule pour vos routes
     BrowserAnimationsModule,
+    NgFor,
+    CommonModule,
   ],
-  providers: [],
+  providers: [
+    provideHttpClient(withFetch()), // Ajoutez ceci pour activer fetch API
+  ],
+  schemas: [NO_ERRORS_SCHEMA],
+
   bootstrap: [AppComponent],
+  exports: [
+    EmployeeComponent, // Si vous souhaitez exporter ce composant
+  ],
 })
 export class AppModule {}

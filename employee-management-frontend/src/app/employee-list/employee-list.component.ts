@@ -4,7 +4,7 @@ import { Employee, EmployeeService } from '../employee.service'; // Assurez-vous
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
-  styleUrls: ['./employee-list.component.css'],
+  //styleUrls: ['./employee-list.component.css'],
 })
 export class EmployeeComponent implements OnInit {
   employees: Employee[] = []; // Liste des employés
@@ -14,21 +14,16 @@ export class EmployeeComponent implements OnInit {
   constructor(private employeeService: EmployeeService) {}
 
   ngOnInit(): void {
-    this.getEmployees(); // Charger tous les employés au démarrage
+    this.getEmployees();
   }
-
-  /**
-   * Récupérer la liste complète des employés
-   */
   getEmployees(): void {
     this.employeeService.getEmployees().subscribe({
-      next: (data: Employee[]) => {
-        this.employees = data; // Mettre à jour la liste des employés
-        this.errorMessage = ''; // Réinitialiser les erreurs
+      next: (data) => {
+        this.employees = data; // Assurez-vous que 'data' est bien un tableau
+        console.log(this.employees); // Vérifiez que 'employees' contient bien des données
       },
-      error: (error: any) => {
-        console.error('Erreur lors de la récupération des employés:', error);
-        this.errorMessage = 'Erreur lors de la récupération des employés.';
+      error: (err) => {
+        console.error('Erreur :', err);
       },
     });
   }

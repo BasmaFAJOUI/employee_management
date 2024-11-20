@@ -46,11 +46,11 @@
       <tbody>
         <tr *ngFor="let employee of employees">
           <td>{{ employee.id }}</td>
-          <td>{{ employee.fname }}</td>
-          <td>{{ employee.lname }}</td>
+          <td>{{ employee.first_name }}</td>
+          <td>{{ employee.last_name }}</td>
           <td>{{ employee.email }}</td>
           <td>{{ employee.department }}</td>
-          <td>{{ employee.designation }}</td>
+          <td>{{ employee.position }}</td>
           <td>
             <!-- Boutons d'action pour chaque employé -->
             <button

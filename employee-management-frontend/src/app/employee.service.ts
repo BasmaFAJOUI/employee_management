@@ -20,8 +20,9 @@ export class EmployeeService {
 
   constructor(private http: HttpClient) {}
 
-  getEmployees(): Observable<any> {
-    return this.http.get(this.baseUrl);
+  // Récupérer tous les employés
+  getEmployees(): Observable<Employee[]> {
+    return this.http.get<Employee[]>(this.baseUrl);
   }
 
   // Récupérer un employé par ID
