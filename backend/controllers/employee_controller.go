@@ -33,21 +33,25 @@ func GetEmployees(c *gin.Context) {
 func CreateEmployee(c *gin.Context) {
 	var newEmployee models.Employee
 
+	// Liez les données JSON à la structure
 	if err := c.ShouldBindJSON(&newEmployee); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	// Génération de l'ObjectId
-	newEmployee.ID = primitive.NewObjectID().Hex()
+	// Génération d'un nouvel ObjectId
+	newEmployee.ID = primitive.NewObjectID()
 
 	collection := services.DB.Collection("employees")
+
+	// Insérez l'employé dans la base de données
 	_, err := collection.InsertOne(c, newEmployee)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create employee"})
 		return
 	}
 
+	// Retourner l'employé nouvellement créé
 	c.JSON(http.StatusOK, newEmployee)
 }
 

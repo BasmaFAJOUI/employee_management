@@ -1,7 +1,9 @@
 package models
 
+import "go.mongodb.org/mongo-driver/bson/primitive"
+
 type Employee struct {
-	ID         string `json:"id" bson:"_id"`
+	ID         primitive.ObjectID `json:"id" bson:"_id"`
 	FirstName  string `json:"first_name" bson:"first_name" binding:"required"`
 	LastName   string `json:"last_name" bson:"last_name" binding:"required"`
 	Email      string `json:"email" binding:"required,email"`

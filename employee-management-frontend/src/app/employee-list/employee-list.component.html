@@ -1,0 +1,11 @@
+<div *ngIf="employees.length > 0">
+  <ul>
+    <li *ngFor="let employee of employees">
+      {{ employee.name }} - {{ employee.position }}
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="employees.length === 0">
+  <p>No employees found.</p>
+</div>
