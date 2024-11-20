@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -7,7 +7,7 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   standalone: true,
-  imports: [NgbCarouselModule],
+  imports: [NgbCarouselModule, RouterModule], // Ajoutez RouterModule ici
 })
 export class HomeComponent {
   constructor(private router: Router) {}

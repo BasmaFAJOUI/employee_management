@@ -2,31 +2,46 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+export interface Employee {
+  id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone?: string;
+  position: string;
+  department: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class EmployeeService {
-  private apiUrl = 'http://localhost:8080/employees'; // L'URL du backend Go
+  private baseUrl = 'http://localhost:8080/api/employees'; // URL du backend
 
   constructor(private http: HttpClient) {}
 
-  // GET: Récupérer tous les employés
-  getEmployees(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+  // Récupérer tous les employés
+  getEmployees(): Observable<Employee[]> {
+    return this.http.get<Employee[]>(this.baseUrl);
   }
 
-  // POST: Ajouter un nouvel employé
-  addEmployee(employee: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, employee);
+  // Récupérer un employé par ID
+  getEmployeeById(id: string): Observable<Employee> {
+    return this.http.get<Employee>(`${this.baseUrl}/${id}`);
   }
 
-  // PUT: Mettre à jour un employé
-  updateEmployee(id: string, employee: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/${id}`, employee);
+  // Créer un nouvel employé
+  createEmployee(employee: Employee): Observable<Employee> {
+    return this.http.post<Employee>(this.baseUrl, employee);
   }
 
-  // DELETE: Supprimer un employé
+  // Mettre à jour un employé
+  updateEmployee(id: string, employee: Partial<Employee>): Observable<any> {
+    return this.http.put(`${this.baseUrl}/${id}`, employee);
+  }
+
+  // Supprimer un employé
   deleteEmployee(id: string): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+    return this.http.delete(`${this.baseUrl}/${id}`);
   }
 }
